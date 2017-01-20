@@ -1,8 +1,7 @@
 # Учебный проект «Код и Магия» [![Build status][travis-image]][travis-url] [![Dependency status][dependency-image]][dependency-url]
 
 * Студент: [Анна Пономарёва](https://up.htmlacademy.ru/javascript/8/user/153610).
-* Наставник: `Неизвестно`.
-
+* Наставник: [Евгений Щепотьев](https://up.htmlacademy.ru/javascript/8/user/125753).
 ---
 
 _Не удаляйте и не обращайте внимание на папки и файлы:_<br>
