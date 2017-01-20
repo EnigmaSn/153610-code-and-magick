@@ -32,7 +32,8 @@
                                                               width="130">Сделано в HTML Academy</a>в 2017 году</p>
 </footer>
 <script>
-  var fireballSize = 120;
+  // 'use strict';
+  var fireballSize = 22;
 
   var getFireballSpeed = function(left) {
     if (left == true) {
@@ -47,9 +48,24 @@
 
   // Задайте переменной getWizardHeight функцию, которая возвращает пропорциональную высоту мага, т.е. высота мага — это пропорция 1.337 * ширина мага.
 
-  // var getWizardHeight = function() {
-  //
-  // }
+  var getWizardHeight = function() {
+    return 1.377*wizardWidth;
+  }
+
+  // Определите функцию getWizardX c одним параметром — width. Игра будет вызывать вашу функцию и передавать в неё этот параметр (который обозначает ширину игровой области). Результат, возвращаемый вашей функцией, игра будет использовать, чтобы задать положение мага по горизонтали. Напишите функцию так, чтобы центр фигурки мага находился посередине игрового поля.
+
+  function getWizardX(width) {
+    var positionWizardX = (width - wizardWidth) / 2;
+    return positionWizardX;
+  }
+
+// Определите функцию getWizardY c одним параметром — height. Игра будет вызывать вашу функцию и передавать в неё этот параметр (который обозначает высоту игровой области). Результат, возвращаемый вашей функцией, игра будет использовать, чтобы задать положение мага по вертикали. Напишите функцию так, чтобы маг появлялся на высоте две трети игрового поля от земли.
+
+function getWizardY(height) {
+  var positionWizardY = height / 3 * 2; 
+  return positionWizardY;
+}
+
 </script>
 <script src="js/game.js" type="application/javascript"></script>
 
