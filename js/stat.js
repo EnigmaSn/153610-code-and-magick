@@ -33,6 +33,7 @@ window.renderStatistics = function (ctx, names, times) {
   var columnIndent = 50; // Расстояние между колонками
   var stepY = histoHeight / (max - min); // высота шага
   var stepX = histoX + columnIndent; // шаг через который рисуются колонки(?)
+  var youColor = 'rgba(255, 0, 0, 1)'; // цвет для колонки "Вы"
 
 
   for (var i = 0; i < times.length; i++) {
@@ -51,19 +52,15 @@ window.renderStatistics = function (ctx, names, times) {
     // вывести под колонкой, а не над как время
     ctx.fillText(name, stepX * i + 150, 20 + stepX + histoHeight);
 
-    // рисуем сами колонки
-    ctx.fillStyle = columnColor;
-    ctx.fillRect(stepX * i + 150, stepX + histoHeight - height, histoX, height);
-
     // цвета колонок
-    var youColor = 'rgba(255, 0, 0, 1)'; // цвет для колонки "Вы"
-    // var otherSaturation = ["0.1", "0.4", "0.8", "1"];
-    // var rand = Math.floor(Math.random() * otherSaturation.length);
-    // var otherColor = 'rgba(0, 0, 255, otherSaturation[rand]);';
-    var otherColor = 'rgba(0, 0, 255, 1)';
+    var opacity = (Math.random()*0.9+0.1).toFixed(1); // умножить на разность max и min и вычесть min
+
+    var otherColor = 'rgba(0, 0, 255,' + opacity + ')';
+    console.log(otherColor);
+
     var columnColor;
 
-    if (names === 'Вы') {
+    if (name === 'Вы') {
       columnColor = youColor;
     } else {
       columnColor = otherColor;
@@ -71,10 +68,8 @@ window.renderStatistics = function (ctx, names, times) {
 
     ctx.fillStyle = columnColor;
 
+    // рисуем сами колонки
+    ctx.fillStyle = columnColor;
+    ctx.fillRect(stepX * i + 150, stepX + histoHeight - height, histoX, height);
   }
 };
-
-// отступы у текста
-// отрисовка колонок снизу...как я это сделала
-// цвет Вы не отрисовывается
-// мерзкие пробелы
