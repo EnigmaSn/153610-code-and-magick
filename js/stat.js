@@ -37,12 +37,18 @@ window.renderStatistics= function(ctx,names,times){
   var columnIndent = 50; // Расстояние между колонками
   var stepY = histoHeight/ (max-min); // высота шага
   var stepX = histoX + columnIndent; // шаг через который рисуются колонки(?)
-  var youColor = 'rgba(255, 0, 0, 1)'; // цвет для колонки "Вы"
 
-  // случайная прозрачность соперников
+  // цвета колонок
+  var youColor = 'rgba(255, 0, 0, 1)'; // цвет для колонки "Вы"
   var otherSaturation = ["0.1", "0.4", "0.8", "1"];
   var rand = Math.floor(Math.random() * otherSaturation.length);
   var otherColor = 'rgba(0, 0, 255, otherSaturation[rand]);';
+  var columnColor;
+  if (name === 'Вы') {
+    columnColor = youColor;
+  } else {
+    columnColor = otherColor;
+  }
 
 
   for(var i = 0 ; i < times.length; i++ ) {
@@ -52,9 +58,27 @@ window.renderStatistics= function(ctx,names,times){
     // высота конкретной колонки
     var height = stepY * (time - min);
 
-    // выводим текст в гистограмме
-    // toFixed(0) округляет значение до целого
-    // выпить и понять
-    ctx.fillText(time.toFixed(), histoX + columnIndent * i, stepX +  histoHeight- height);
+    // рисуем колонки в гистограмме
+
+
+    // выводим время в гистограмме
+    ctx.fillStyle = 'rgba(0,0,0,1)';
+    ctx.Font = '16px PT Mono';
+    ctx.fillText(time.toFixed(), stepX * i, stepX +  histoHeight- height); // вычитаем высоту, чтобы текст был над колонкой
+
+    // выводим имена в гистограмм
+    // вывести под колонкой, а не над как время
+    ctx.fillText(name, stepX * i, stepX +  histoHeight);
+
+    // рисуем саму колонку
+    // ctx.fillStyle=
+    // ctx.fillRect
+
+
+    // var height = step * time;
+
+    // ctx.fillRect(stepX * i, stepY, histoX, height);
+    // ctx.fillStyle = '#000';
+    // ctx.fillText(name + ':' + time.toFixed(0), histoX + columnIndent * i, 100 + histoHeight + 20);
   }
 };
