@@ -10,23 +10,9 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillRect(100, 10, 420, 270);
 
   ctx.fillStyle = 'rgba(0, 0, 0, 1)';
-  ctx.font = 'PT Mono, 16px';
+  ctx.font = '16px PT Mono';
   ctx.fillText('Ура, Вы победили!', 230, 40);
   ctx.fillText('Список результатов:', 230, 60);
-
-  // определяем максимальное и минимальное время
-  var max = 0;
-  var min = 0;
-
-  // переопределяет min и max в зависимости от переданных данных
-  times.forEach(function (time) {
-    if (time > max) {
-      max = time;
-    }
-    if (time < min) {
-      min = time;
-    }
-  });
 
   var histoHeight = 150; // Высота гистограммы
   var histoX = 40; // Ширина колонки
@@ -40,12 +26,19 @@ window.renderStatistics = function (ctx, names, times) {
     var time = times[i];
     var name = names[i];
 
+    // определяем максимальное и минимальное время
+    var max = 0;
+    var min = Infinity;
+
+    // переопределяем min и max в зависимости от переданных данных
+    max = time > max ? time : max;
+    min = time < min ? time : min;
+
     // высота конкретной колонки
     var height = stepY * (time - min);
 
     // выводим время в гистограмме
     ctx.fillStyle = 'rgba(0,0,0,1)';
-    ctx.font = '16px PT Mono';
     ctx.fillText(time.toFixed(), stepX * i + 150, stepX + histoHeight - height - 10); // вычитаем высоту, чтобы текст был над колонкой
 
     // выводим имена в гистограмм
@@ -65,8 +58,6 @@ window.renderStatistics = function (ctx, names, times) {
     } else {
       columnColor = otherColor;
     }
-
-    ctx.fillStyle = columnColor;
 
     // рисуем сами колонки
     ctx.fillStyle = columnColor;
