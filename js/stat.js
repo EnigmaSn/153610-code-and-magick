@@ -53,11 +53,10 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillText(name, stepX * i + 150, 20 + stepX + histoHeight);
 
     // цвета колонок
-    var opacity = (Math.random()*0.9+0.1).toFixed(1);
+    var opacity = (Math.random() * 0.9 + 0.1).toFixed(1);
     // умножить на разность max и min и вычесть min
 
     var otherColor = 'rgba(0, 0, 255,' + opacity + ')';
-    console.log(otherColor);
 
     var columnColor;
 
