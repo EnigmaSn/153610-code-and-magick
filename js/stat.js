@@ -17,10 +17,8 @@ window.renderStatistics = function (ctx, names, times) {
   var histoHeight = 150; // Высота гистограммы
   var histoX = 40; // Ширина колонки
   var columnIndent = 50; // Расстояние между колонками
-  var stepY = histoHeight / (max - min); // высота шага
   var stepX = histoX + columnIndent; // шаг через который рисуются колонки(?)
   var youColor = 'rgba(255, 0, 0, 1)'; // цвет для колонки "Вы"
-
 
   for (var i = 0; i < times.length; i++) {
     var time = times[i];
@@ -34,8 +32,15 @@ window.renderStatistics = function (ctx, names, times) {
     max = time > max ? time : max;
     min = time < min ? time : min;
 
+
     // высота конкретной колонки
-    var height = stepY * (time - min);
+    // var height = stepY * time;
+  }
+
+  var stepY = histoHeight / (max - min); // высота шага
+
+  for (i = 0; i < times.length; i++) {
+    var height = stepY * time;
 
     // выводим время в гистограмме
     ctx.fillStyle = 'rgba(0,0,0,1)';
