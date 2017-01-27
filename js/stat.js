@@ -17,42 +17,41 @@ window.renderStatistics = function (ctx, names, times) {
   var histoHeight = 150; // Высота гистограммы
   var histoX = 40; // Ширина колонки
   var columnIndent = 50; // Расстояние между колонками
-  var stepX = histoX + columnIndent; // шаг через который рисуются колонки(?)
+  var stepX = histoX + columnIndent; // шаг через который рисуются колонки
   var youColor = 'rgba(255, 0, 0, 1)'; // цвет для колонки "Вы"
+
+  // объявление max вне цикла!!!
+  // определяем максимальное время
+  var max = 0;
 
   for (var i = 0; i < times.length; i++) {
     var time = times[i];
     var name = names[i];
 
-    // определяем максимальное и минимальное время
-    var max = 0;
-    var min = Infinity;
-
-    // переопределяем min и max в зависимости от переданных данных
+    // переопределяем max в зависимости от переданных данных
     max = time > max ? time : max;
-    min = time < min ? time : min;
-
-
-    // высота конкретной колонки
-    // var height = stepY * time;
   }
 
-  var stepY = histoHeight / (max - min); // высота шага
+  var stepY = histoHeight / max; // высота шага
 
+  // во втором цикле с той же переменной var не ставить
   for (i = 0; i < times.length; i++) {
+    // переобъявить параметры time и name!!! (новый цикл)
+    time = times[i];
+    name = names[i];
+
     var height = stepY * time;
 
     // выводим время в гистограмме
     ctx.fillStyle = 'rgba(0,0,0,1)';
     ctx.fillText(time.toFixed(), stepX * i + 150, stepX + histoHeight - height - 10); // вычитаем высоту, чтобы текст был над колонкой
 
-    // выводим имена в гистограмм
-    // вывести под колонкой, а не над как время
+    // выводим имена в гистограмму
     ctx.fillText(name, stepX * i + 150, 20 + stepX + histoHeight);
 
     // цвета колонок
     var opacity = (Math.random() * 0.9 + 0.1).toFixed(1);
-    // умножить на разность max и min и вычесть min
+    // умножить на разность max и min значений и вычесть min
 
     var otherColor = 'rgba(0, 0, 255,' + opacity + ')';
 
