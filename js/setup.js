@@ -30,7 +30,7 @@ var wizardCoatColors = [
 ];
 
 wizardCoat.addEventListener('click', function () {
-  wizardCoat.style.fill = wizardCoatColors[(Math.random() * wizardCoatColors.length).toFixed(0)];
+  wizardCoat.style.fill = wizardCoatColors[Math.floor(Math.random() * wizardCoatColors.length)];
 });
 
 // Изменение цвета глаз персонажа по нажатию
@@ -44,7 +44,7 @@ var wizardEyesColors = [
 ];
 
 wizardEyes.addEventListener('click', function () {
-  wizardEyes.style.fill = wizardEyesColors[(Math.random() * wizardEyesColors.length).toFixed(0)];
+  wizardEyes.style.fill = wizardEyesColors[Math.floor(Math.random() * wizardEyesColors.length)];
 });
 
 // Изменение цвета фаерболов по нажатию
@@ -58,7 +58,7 @@ var fireballWrapColors = [
 ];
 
 fireballWrap.addEventListener('click', function () {
-  fireballWrap.style.background = fireballWrapColors[(Math.random() * fireballWrapColors.length).toFixed(0)];
+  fireballWrap.style.background = fireballWrapColors[Math.floor(Math.random() * fireballWrapColors.length)];
 });
 
 
